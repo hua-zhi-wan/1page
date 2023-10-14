@@ -19,8 +19,12 @@
 
 <body>
     <article id="content" class="markdown-body"></article>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.2/lib/marked.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"
+        integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/lib/marked.umd.min.js"
+        integrity="sha512-yFyNByl9bGU77sAkUnW/WtHqEGkbCCOgSvmpdQMupQuweubPSNKl2BLliWiv0Y6FRseBw8NLzoJO/TWoI4Dbtw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const root = document.querySelector('#content');
         const slug = window.location.hash.substring(1);
