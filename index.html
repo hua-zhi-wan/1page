@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1Page - 创建临时快速分享页面！</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.3.0/github-markdown-light.min.css"
+        rel="stylesheet">
+</head>
+
+<body id="app" @vue:mounted="mounted()" class="bg-gradient">
+    <div class="p-4 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="h3 text-white col">🔖 1Page - 临时页面</div>
+                <div class="h6 text-white pt-3 col">——创建一个临时的快速分享页面！</div>
+            </div>
+        </div>
+    </div>
+    <a href="https://github.com/HanaYabuki" class="github-corner" aria-label="View source on GitHub"><svg width="80"
+            height="80" viewBox="0 0 250 250"
+            style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path
+                d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path
+                d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                fill="currentColor" class="octo-body"></path>
+        </svg></a>
+    <style>
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out
+        }
+
+        @keyframes octocat-wave {
+
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+
+            20%,
+            60% {
+                transform: rotate(-25deg)
+            }
+
+            40%,
+            80% {
+                transform: rotate(10deg)
+            }
+        }
+
+        @media (max-width:500px) {
+            .github-corner:hover .octo-arm {
+                animation: none
+            }
+
+            .github-corner .octo-arm {
+                animation: octocat-wave 560ms ease-in-out
+            }
+        }
+    </style>
+    <div class="container mt-3">
+        <form action="##" onsubmit="return false" class="form-horizontal">
+            <div class="row mb-3">
+                <div class="col col-6">
+                    <div class="card">
+                        <label class="card-header">📄 原始文本</label>
+                        <div class="card-body">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="12"
+                                v-model="content"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6">
+                    <div class="card">
+                        <label class="card-header">📘 渲染页面</label>
+                        <div class="card-body">
+                            <article class="markdown-body" v-html="render"></article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-10">
+                    <input type="button" class="btn btn-outline-primary" @click="createCallback()" value="创建页面"
+                        id="create" v-if="buttonDisplay" />
+                    <input type="button" class="btn btn-outline-primary" value="..." id="create-disabled" disabled
+                        v-else />
+                </div>
+            </div>
+            <div class="row mb-3 mt-4">
+                <div class="col">
+                    <div class="card">
+                        <label class="card-header">📑 生成链接</label>
+                        <div class="card-body">
+                            <div class="input-group">
+
+                                <button class="btn btn-outline-secondary" data-clipboard-target="#output"
+                                    id="copy">复制链接</button>
+                                <input class="form-control" id="output" :value="url" id="output" readonly></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="card">
+                        <label class="card-header">🍥 关于作者</label>
+                        <div class="card-body">
+                            会唱歌的花枝丸 <a href="https://github.com/HanaYabuki" class="link-primary">@github</a> <a href="https://space.bilibili.com/496956009" class="link-info">@bilibili</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11">
+        <div class="toast align-items-center text-white" role="alert" aria-live="assertive" aria-atomic="true"
+            id="toast">
+            <div class="d-flex">
+                <div class="toast-body">{{toastMsg}}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.2/lib/marked.umd.min.js"></script>
+    <script>
+        const background = ['primary', 'danger', 'success', 'info'].map(i => 'bg-' + i);
+        PetiteVue.createApp({
+            count: 0,
+            toastMsg: "",
+            content: "",
+            url: window.location.href,
+            buttonDisplay: true,
+            get render() {
+                return marked.parse(this.content);
+            },
+            toast(msg, color) {
+                const toast = document.querySelector('#toast');
+                this.toastMsg = msg;
+                toast.classList.remove(...background);
+                toast.classList.add(color);
+                new bootstrap.Toast(toast).show();
+            },
+            createCallback() {
+                this.buttonDisplay = false;
+                axios({
+                    method: 'post',
+                    url: '/api/create',
+                    data: {
+                        content: this.content
+                    }
+                }).then((resp) => {
+                    this.toast(resp.data.msg ?? '成功', background[2]);
+                    this.url = window.location.origin + '/' + resp.data.slug;
+                }).catch((err) => {
+                    this.toast(err.response.data.msg ?? '错误', background[1]);
+                }).finally(() => {
+                    this.buttonDisplay = true;
+                });
+            },
+            deleteAll() {
+                this.buttonDisplay = false;
+                axios({
+                    method: 'post',
+                    url: '/api/clear'
+                }).then((resp) => {
+                    this.toast(resp.data.msg ?? 'ok', background[2]);
+                }).catch((err) => {
+                    this.toast(err.response.data.msg ?? 'err', background[1]);
+                }).finally(() => {
+                    this.buttonDisplay = true;
+                });
+            },
+            mounted() {
+                const clipboard = new ClipboardJS('#copy');
+                clipboard.on('success', (e) => {
+                    this.toast(`已复制链接 ${e.text} 到剪贴板`, background[3]);
+                    e.clearSelection();
+                });
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

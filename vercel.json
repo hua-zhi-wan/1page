@@ -1,0 +1,17 @@
+{
+    "redirects": [
+        {
+            "source": "/:slug((?!api/)[A-Za-z0-9_-]{12})",
+            "destination": "/renderer.html#:slug*"
+        }
+    ],
+    "crons": [
+        {
+            "path": "/api/clear",
+            "schedule": "0 6 * * *"
+        }
+    ],
+    "github": {
+        "enabled": false
+    }
+}

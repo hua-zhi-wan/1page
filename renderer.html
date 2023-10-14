@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.3.0/github-markdown-light.min.css">
+    <title>1Page</title>
+</head>
+
+<body>
+    <article id="content" class="markdown-body"></article>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.2/lib/marked.umd.min.js"></script>
+    <script>
+        const root = document.querySelector('#content');
+        const slug = window.location.hash.substring(1);
+        axios.get(`/api/jump?slug=${slug}`).then((resp) => {
+            root.innerHTML = marked.parse(resp.data.content);
+        }).catch((err) => {
+            console.log(err);
+            root.innerHTML = "<h2>1Page : 你要找的页面不存在</h2>"
+        });
+    </script>
+</body>
+
+</html>
