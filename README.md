@@ -20,4 +20,4 @@
 + [twbs/bootstrap](https://github.com/twbs/bootstrap) 最受欢迎的前端样式框架
 
 ## 作者
-会唱歌的花枝丸 [@github](https://github.com/HanaYabuki) [@bilibili](https://space.bilibili.com/496956009)
+会唱歌的花枝丸 [@github](https://github.com/hua-zhi-wan) [@bilibili](https://space.bilibili.com/496956009)
